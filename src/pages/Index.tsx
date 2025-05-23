@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -6,6 +5,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { Linkedin, Bell, TrendingUp, Users, Target, Zap, CheckCircle, ArrowRight, Clock, MessageSquare, Send } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import AnimatedLogo from "@/components/AnimatedLogo";
+import WorkflowAnimation from "@/components/WorkflowAnimation";
 
 const Index = () => {
   const [email, setEmail] = useState('');
@@ -38,12 +39,7 @@ const Index = () => {
       {/* Header */}
       <header className="border-b bg-white/80 backdrop-blur-sm sticky top-0 z-50">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-          <div className="flex items-center space-x-2">
-            <Linkedin className="h-8 w-8 text-blue-600" />
-            <span className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
-              InstainKer
-            </span>
-          </div>
+          <AnimatedLogo />
           <Badge variant="secondary" className="bg-gradient-to-r from-blue-100 to-indigo-100 text-blue-700">
             Coming Soon
           </Badge>
@@ -111,11 +107,13 @@ const Index = () => {
             How InstainKer Works
           </h2>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Four simple steps to maintain consistent LinkedIn presence effortlessly
+            Watch how our AI agent automates your LinkedIn presence in four simple steps
           </p>
         </div>
 
-        <div className="grid md:grid-cols-4 gap-8 mb-20">
+        <WorkflowAnimation />
+
+        <div className="grid md:grid-cols-4 gap-8 mt-20">
           <Card className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 bg-white relative">
             <CardHeader className="text-center">
               <div className="w-16 h-16 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -326,8 +324,7 @@ const Index = () => {
       <footer className="bg-gray-900 text-white py-12">
         <div className="container mx-auto px-4 text-center">
           <div className="flex items-center justify-center space-x-2 mb-4">
-            <Linkedin className="h-6 w-6 text-blue-400" />
-            <span className="text-xl font-bold">InstainKer</span>
+            <AnimatedLogo className="text-white [&>div>span]:text-white [&>div>span]:bg-gradient-to-r [&>div>span]:from-blue-400 [&>div>span]:to-indigo-400 [&>div>span]:bg-clip-text [&>div>span]:text-transparent" />
           </div>
           <p className="text-gray-400 mb-4">
             Never miss your LinkedIn post again with smart automation
