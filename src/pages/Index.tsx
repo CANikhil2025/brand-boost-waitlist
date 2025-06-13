@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -29,7 +30,7 @@ const Index = () => {
     setIsSubmitted(true);
     toast({
       title: "Welcome to the waitlist! 🎉",
-      description: "We'll notify you as soon as InstainKer launches. Get ready for effortless LinkedIn posting!",
+      description: "We'll notify you as soon as InstainKer launches. Get ready to transform your personal brand!",
     });
     setEmail('');
   };
@@ -51,16 +52,15 @@ const Index = () => {
         <div className="max-w-4xl mx-auto">
           <Badge className="mb-6 bg-gradient-to-r from-blue-600 to-indigo-600 text-white animate-fade-in">
             <Bell className="w-4 h-4 mr-2" />
-            Daily AI-Powered LinkedIn Automation
+            AI-Powered Personal Brand Transformation
           </Badge>
           
           <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-gray-900 via-blue-800 to-indigo-900 bg-clip-text text-transparent animate-fade-in">
-            Never Miss Your LinkedIn Post Again
+            Transform Your Personal Brand on LinkedIn
           </h1>
           
           <p className="text-xl md:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto animate-fade-in">
-            Get daily push notifications, trending topic suggestions, and automated LinkedIn posting. 
-            InstainKer keeps your professional presence active while you focus on what matters most.
+            Build a powerful personal brand with daily AI-driven LinkedIn content that establishes you as a thought leader in your industry. InstainKer automates your professional presence while you focus on growing your career.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12 animate-fade-in">
@@ -86,7 +86,7 @@ const Index = () => {
                   </>
                 ) : (
                   <>
-                    Join Waitlist
+                    Start Transformation
                     <ArrowRight className="w-5 h-5 ml-2" />
                   </>
                 )}
@@ -95,7 +95,7 @@ const Index = () => {
           </div>
 
           <p className="text-sm text-gray-500 mb-16">
-            🚀 Be among the first 1000 to get early access and exclusive features
+            🚀 Be among the first 1000 to transform your personal brand with AI
           </p>
         </div>
       </section>
@@ -104,86 +104,24 @@ const Index = () => {
       <section className="container mx-auto px-4 py-20 bg-gradient-to-r from-blue-50 to-indigo-50">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-gray-900 to-blue-800 bg-clip-text text-transparent">
-            How InstainKer Works
+            How InstainKer Transforms Your Brand
           </h2>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Watch how our AI agent automates your LinkedIn presence in four simple steps
+            Watch how our AI agent builds your personal brand authority in four strategic steps
           </p>
         </div>
 
         <WorkflowAnimation />
-
-        <div className="grid md:grid-cols-4 gap-8 mt-20">
-          <Card className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 bg-white relative">
-            <CardHeader className="text-center">
-              <div className="w-16 h-16 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Bell className="w-8 h-8 text-white" />
-              </div>
-              <div className="absolute -top-4 -right-4 w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold">
-                1
-              </div>
-              <CardTitle className="text-xl">Daily Notification</CardTitle>
-              <CardDescription className="text-gray-600">
-                Receive a push notification at your preferred time to post on LinkedIn
-              </CardDescription>
-            </CardHeader>
-          </Card>
-
-          <Card className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 bg-white relative">
-            <CardHeader className="text-center">
-              <div className="w-16 h-16 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                <TrendingUp className="w-8 h-8 text-white" />
-              </div>
-              <div className="absolute -top-4 -right-4 w-8 h-8 bg-indigo-600 text-white rounded-full flex items-center justify-center font-bold">
-                2
-              </div>
-              <CardTitle className="text-xl">Trending Research</CardTitle>
-              <CardDescription className="text-gray-600">
-                AI researches the most trending LinkedIn topics and suggests relevant ones for you
-              </CardDescription>
-            </CardHeader>
-          </Card>
-
-          <Card className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 bg-white relative">
-            <CardHeader className="text-center">
-              <div className="w-16 h-16 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                <MessageSquare className="w-8 h-8 text-white" />
-              </div>
-              <div className="absolute -top-4 -right-4 w-8 h-8 bg-purple-600 text-white rounded-full flex items-center justify-center font-bold">
-                3
-              </div>
-              <CardTitle className="text-xl">Content Creation</CardTitle>
-              <CardDescription className="text-gray-600">
-                Choose your topic and our AI drafts a compelling post for your approval
-              </CardDescription>
-            </CardHeader>
-          </Card>
-
-          <Card className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 bg-white relative">
-            <CardHeader className="text-center">
-              <div className="w-16 h-16 bg-gradient-to-r from-pink-600 to-red-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Send className="w-8 h-8 text-white" />
-              </div>
-              <div className="absolute -top-4 -right-4 w-8 h-8 bg-pink-600 text-white rounded-full flex items-center justify-center font-bold">
-                4
-              </div>
-              <CardTitle className="text-xl">Auto-Post</CardTitle>
-              <CardDescription className="text-gray-600">
-                Once approved, InstainKer automatically posts directly to your LinkedIn profile
-              </CardDescription>
-            </CardHeader>
-          </Card>
-        </div>
       </section>
 
       {/* Features Section */}
       <section className="container mx-auto px-4 py-20">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-gray-900 to-blue-800 bg-clip-text text-transparent">
-            Why Professionals Choose InstainKer
+            Why Leaders Choose InstainKer
           </h2>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Maintain consistent LinkedIn presence without the daily hassle of content creation
+            Build thought leadership and establish your professional authority with consistent, strategic content
           </p>
         </div>
 
@@ -193,9 +131,9 @@ const Index = () => {
               <div className="w-12 h-12 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-lg flex items-center justify-center mb-4">
                 <Clock className="w-6 h-6 text-white" />
               </div>
-              <CardTitle className="text-xl">Smart Scheduling</CardTitle>
+              <CardTitle className="text-xl">Strategic Timing</CardTitle>
               <CardDescription className="text-gray-600">
-                Set your preferred posting time and never worry about missing your daily LinkedIn activity
+                Post at optimal times when your audience is most engaged, building consistent brand visibility
               </CardDescription>
             </CardHeader>
           </Card>
@@ -205,9 +143,9 @@ const Index = () => {
               <div className="w-12 h-12 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-lg flex items-center justify-center mb-4">
                 <TrendingUp className="w-6 h-6 text-white" />
               </div>
-              <CardTitle className="text-xl">Trending Topics</CardTitle>
+              <CardTitle className="text-xl">Thought Leadership</CardTitle>
               <CardDescription className="text-gray-600">
-                Stay relevant with AI-powered research of the hottest LinkedIn trends in your industry
+                Share insights on trending industry topics, positioning you as a forward-thinking professional
               </CardDescription>
             </CardHeader>
           </Card>
@@ -217,9 +155,9 @@ const Index = () => {
               <div className="w-12 h-12 bg-gradient-to-r from-purple-600 to-pink-600 rounded-lg flex items-center justify-center mb-4">
                 <Target className="w-6 h-6 text-white" />
               </div>
-              <CardTitle className="text-xl">Full Control</CardTitle>
+              <CardTitle className="text-xl">Brand Authenticity</CardTitle>
               <CardDescription className="text-gray-600">
-                Review and approve every post before it goes live. You're always in control of your content
+                Every post reflects your unique voice and expertise, maintaining authentic personal brand representation
               </CardDescription>
             </CardHeader>
           </Card>
@@ -229,24 +167,24 @@ const Index = () => {
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div>
             <h3 className="text-3xl font-bold mb-6 text-gray-900">
-              Effortless LinkedIn Consistency
+              Effortless Brand Building
             </h3>
             <div className="space-y-4">
               <div className="flex items-center space-x-3">
                 <CheckCircle className="w-6 h-6 text-green-600" />
-                <span className="text-lg text-gray-700">Never miss a LinkedIn post again</span>
+                <span className="text-lg text-gray-700">Establish thought leadership in your industry</span>
               </div>
               <div className="flex items-center space-x-3">
                 <CheckCircle className="w-6 h-6 text-green-600" />
-                <span className="text-lg text-gray-700">Save 30+ minutes daily on content creation</span>
+                <span className="text-lg text-gray-700">Build a consistent professional presence</span>
               </div>
               <div className="flex items-center space-x-3">
                 <CheckCircle className="w-6 h-6 text-green-600" />
-                <span className="text-lg text-gray-700">Stay on top of trending topics</span>
+                <span className="text-lg text-gray-700">Attract career opportunities and partnerships</span>
               </div>
               <div className="flex items-center space-x-3">
                 <CheckCircle className="w-6 h-6 text-green-600" />
-                <span className="text-lg text-gray-700">Maintain professional visibility consistently</span>
+                <span className="text-lg text-gray-700">Save 30+ minutes daily while growing your influence</span>
               </div>
             </div>
           </div>
@@ -255,24 +193,24 @@ const Index = () => {
             <div className="bg-gradient-to-r from-blue-600 to-indigo-600 rounded-2xl p-8 text-white shadow-2xl">
               <div className="flex items-center mb-4">
                 <Users className="w-8 h-8 mr-3" />
-                <span className="text-2xl font-bold">Early Access Benefits</span>
+                <span className="text-2xl font-bold">Brand Builder Benefits</span>
               </div>
               <ul className="space-y-3 text-lg">
                 <li className="flex items-center">
                   <Zap className="w-5 h-5 mr-3" />
-                  Free premium features for 3 months
+                  Premium brand strategy features for 3 months
                 </li>
                 <li className="flex items-center">
                   <Zap className="w-5 h-5 mr-3" />
-                  Priority customer support
+                  Personal brand audit and recommendations
                 </li>
                 <li className="flex items-center">
                   <Zap className="w-5 h-5 mr-3" />
-                  Exclusive strategy consultations
+                  Industry thought leadership insights
                 </li>
                 <li className="flex items-center">
                   <Zap className="w-5 h-5 mr-3" />
-                  Beta feature access
+                  Beta access to advanced AI features
                 </li>
               </ul>
             </div>
@@ -284,10 +222,10 @@ const Index = () => {
       <section className="bg-gradient-to-r from-blue-600 to-indigo-600 py-20">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-            Ready to Automate Your LinkedIn Success?
+            Ready to Transform Your Personal Brand?
           </h2>
           <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
-            Join thousands of professionals who will never miss another LinkedIn post with InstainKer's smart automation
+            Join visionary professionals who are building powerful personal brands with InstainKer's intelligent automation
           </p>
           
           {!isSubmitted && (
@@ -304,7 +242,7 @@ const Index = () => {
                 size="lg" 
                 className="bg-white text-blue-600 hover:bg-gray-100 h-12 px-8 font-semibold transition-all duration-300 hover:scale-105"
               >
-                Get Early Access
+                Start Transformation
                 <ArrowRight className="w-5 h-5 ml-2" />
               </Button>
             </form>
@@ -313,8 +251,8 @@ const Index = () => {
           {isSubmitted && (
             <div className="text-center">
               <CheckCircle className="w-16 h-16 text-green-400 mx-auto mb-4" />
-              <p className="text-2xl text-white font-semibold">You're on the list! 🎉</p>
-              <p className="text-blue-100 mt-2">We'll be in touch soon with exclusive updates</p>
+              <p className="text-2xl text-white font-semibold">You're ready to transform! 🎉</p>
+              <p className="text-blue-100 mt-2">We'll be in touch soon with your brand transformation plan</p>
             </div>
           )}
         </div>
@@ -327,10 +265,10 @@ const Index = () => {
             <AnimatedLogo className="text-white [&>div>span]:text-white [&>div>span]:bg-gradient-to-r [&>div>span]:from-blue-400 [&>div>span]:to-indigo-400 [&>div>span]:bg-clip-text [&>div>span]:text-transparent" />
           </div>
           <p className="text-gray-400 mb-4">
-            Never miss your LinkedIn post again with smart automation
+            Transform your personal brand with intelligent LinkedIn automation
           </p>
           <p className="text-sm text-gray-500">
-            © 2024 InstainKer. All rights reserved. | Built for busy professionals.
+            © 2024 InstainKer. All rights reserved. | Built for ambitious professionals.
           </p>
         </div>
       </footer>
