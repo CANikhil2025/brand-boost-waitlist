@@ -1,5 +1,4 @@
-
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -8,13 +7,30 @@ import { Linkedin, Bell, TrendingUp, Users, Target, Zap, CheckCircle, ArrowRight
 import { useToast } from "@/hooks/use-toast";
 import AnimatedLogo from "@/components/AnimatedLogo";
 import WorkflowAnimation from "@/components/WorkflowAnimation";
+import GoogleSheetsConfig from "@/components/GoogleSheetsConfig";
+import { appendToGoogleSheet, GoogleSheetsConfig as GoogleSheetsConfigType } from "@/utils/googleSheets";
 
 const Index = () => {
   const [email, setEmail] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [googleSheetsConfig, setGoogleSheetsConfig] = useState<GoogleSheetsConfigType | null>(null);
   const { toast } = useToast();
 
-  const handleWaitlistSubmit = (e: React.FormEvent) => {
+  // Load Google Sheets config from localStorage on component mount
+  useEffect(() => {
+    const savedConfig = localStorage.getItem('googleSheetsConfig');
+    if (savedConfig) {
+      setGoogleSheetsConfig(JSON.parse(savedConfig));
+    }
+  }, []);
+
+  const handleGoogleSheetsConfigSave = (config: GoogleSheetsConfigType) => {
+    setGoogleSheetsConfig(config);
+    localStorage.setItem('googleSheetsConfig', JSON.stringify(config));
+  };
+
+  const handleWaitlistSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email) {
       toast({
@@ -24,10 +40,36 @@ const Index = () => {
       });
       return;
     }
-    
-    // Here you would typically send the email to your backend
+
+    setIsLoading(true);
     console.log('Waitlist signup:', email);
+
+    // Try to append to Google Sheet if configured
+    if (googleSheetsConfig) {
+      try {
+        const success = await appendToGoogleSheet(email, googleSheetsConfig);
+        if (success) {
+          console.log('Email successfully added to Google Sheet');
+        } else {
+          console.warn('Failed to add email to Google Sheet');
+          toast({
+            title: "Partial Success",
+            description: "You've joined the waitlist, but there was an issue saving to Google Sheets.",
+            variant: "destructive",
+          });
+        }
+      } catch (error) {
+        console.error('Error with Google Sheets:', error);
+        toast({
+          title: "Partial Success",
+          description: "You've joined the waitlist, but there was an issue saving to Google Sheets.",
+          variant: "destructive",
+        });
+      }
+    }
+    
     setIsSubmitted(true);
+    setIsLoading(false);
     toast({
       title: "Welcome to the waitlist! 🎉",
       description: "We'll notify you as soon as InstainKer launches. Get ready to transform your personal brand!",
@@ -37,6 +79,12 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50">
+      {/* Google Sheets Configuration */}
+      <GoogleSheetsConfig 
+        onSave={handleGoogleSheetsConfigSave}
+        currentConfig={googleSheetsConfig || undefined}
+      />
+
       {/* Header */}
       <header className="border-b bg-white/80 backdrop-blur-sm sticky top-0 z-50">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
@@ -71,15 +119,20 @@ const Index = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="flex-1 h-12 text-lg"
-                disabled={isSubmitted}
+                disabled={isSubmitted || isLoading}
               />
               <Button 
                 type="submit" 
                 size="lg" 
                 className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 h-12 px-8 transition-all duration-300 hover:scale-105"
-                disabled={isSubmitted}
+                disabled={isSubmitted || isLoading}
               >
-                {isSubmitted ? (
+                {isLoading ? (
+                  <>
+                    <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin mr-2" />
+                    Saving...
+                  </>
+                ) : isSubmitted ? (
                   <>
                     <CheckCircle className="w-5 h-5 mr-2" />
                     Joined!
@@ -236,14 +289,25 @@ const Index = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="flex-1 h-12 text-lg bg-white/90 border-0"
+                disabled={isLoading}
               />
               <Button 
                 type="submit" 
                 size="lg" 
                 className="bg-white text-blue-600 hover:bg-gray-100 h-12 px-8 font-semibold transition-all duration-300 hover:scale-105"
+                disabled={isLoading}
               >
-                Start Transformation
-                <ArrowRight className="w-5 h-5 ml-2" />
+                {isLoading ? (
+                  <>
+                    <div className="w-5 h-5 border-2 border-blue-600 border-t-transparent rounded-full animate-spin mr-2" />
+                    Saving...
+                  </>
+                ) : (
+                  <>
+                    Start Transformation
+                    <ArrowRight className="w-5 h-5 ml-2" />
+                  </>
+                )}
               </Button>
             </form>
           )}
