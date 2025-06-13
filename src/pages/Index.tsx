@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react';
+
+import { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -7,28 +8,13 @@ import { Linkedin, Bell, TrendingUp, Users, Target, Zap, CheckCircle, ArrowRight
 import { useToast } from "@/hooks/use-toast";
 import AnimatedLogo from "@/components/AnimatedLogo";
 import WorkflowAnimation from "@/components/WorkflowAnimation";
-import GoogleSheetsConfig from "@/components/GoogleSheetsConfig";
-import { appendToGoogleSheet, GoogleSheetsConfig as GoogleSheetsConfigType } from "@/utils/googleSheets";
+import { supabase } from "@/integrations/supabase/client";
 
 const Index = () => {
   const [email, setEmail] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [googleSheetsConfig, setGoogleSheetsConfig] = useState<GoogleSheetsConfigType | null>(null);
   const { toast } = useToast();
-
-  // Load Google Sheets config from localStorage on component mount
-  useEffect(() => {
-    const savedConfig = localStorage.getItem('googleSheetsConfig');
-    if (savedConfig) {
-      setGoogleSheetsConfig(JSON.parse(savedConfig));
-    }
-  }, []);
-
-  const handleGoogleSheetsConfigSave = (config: GoogleSheetsConfigType) => {
-    setGoogleSheetsConfig(config);
-    localStorage.setItem('googleSheetsConfig', JSON.stringify(config));
-  };
 
   const handleWaitlistSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -44,47 +30,43 @@ const Index = () => {
     setIsLoading(true);
     console.log('Waitlist signup:', email);
 
-    // Try to append to Google Sheet if configured
-    if (googleSheetsConfig) {
-      try {
-        const success = await appendToGoogleSheet(email, googleSheetsConfig);
-        if (success) {
-          console.log('Email successfully added to Google Sheet');
-        } else {
-          console.warn('Failed to add email to Google Sheet');
+    try {
+      const { error } = await supabase
+        .from('waitlist_emails')
+        .insert([{ email }]);
+
+      if (error) {
+        if (error.code === '23505') { // Unique constraint violation
           toast({
-            title: "Partial Success",
-            description: "You've joined the waitlist, but there was an issue saving to Google Sheets.",
+            title: "Already registered",
+            description: "This email is already on our waitlist. Thanks for your interest!",
             variant: "destructive",
           });
+        } else {
+          throw error;
         }
-      } catch (error) {
-        console.error('Error with Google Sheets:', error);
+      } else {
+        setIsSubmitted(true);
         toast({
-          title: "Partial Success",
-          description: "You've joined the waitlist, but there was an issue saving to Google Sheets.",
-          variant: "destructive",
+          title: "Welcome to the waitlist! 🎉",
+          description: "We'll notify you as soon as InstainKer launches. Get ready to transform your personal brand!",
         });
+        setEmail('');
       }
+    } catch (error) {
+      console.error('Error adding email to waitlist:', error);
+      toast({
+        title: "Something went wrong",
+        description: "Please try again or contact support if the problem persists.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoading(false);
     }
-    
-    setIsSubmitted(true);
-    setIsLoading(false);
-    toast({
-      title: "Welcome to the waitlist! 🎉",
-      description: "We'll notify you as soon as InstainKer launches. Get ready to transform your personal brand!",
-    });
-    setEmail('');
   };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50">
-      {/* Google Sheets Configuration */}
-      <GoogleSheetsConfig 
-        onSave={handleGoogleSheetsConfigSave}
-        currentConfig={googleSheetsConfig || undefined}
-      />
-
       {/* Header */}
       <header className="border-b bg-white/80 backdrop-blur-sm sticky top-0 z-50">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
