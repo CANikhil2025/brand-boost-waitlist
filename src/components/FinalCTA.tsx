@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -62,12 +61,12 @@ const FinalCTA = () => {
   };
 
   return (
-    <section className="bg-gradient-to-r from-blue-600 to-indigo-600 py-20">
+    <section className="bg-[#0077B5] py-20">
       <div className="container mx-auto px-4 text-center">
         <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
           Ready to Transform Your Personal Brand?
         </h2>
-        <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
+        <p className="text-xl text-[#cceaff] mb-8 max-w-2xl mx-auto">
           Join visionary professionals who are building powerful personal brands with InstainKer's intelligent automation
         </p>
         
@@ -84,12 +83,12 @@ const FinalCTA = () => {
             <Button 
               type="submit" 
               size="lg" 
-              className="bg-white text-blue-600 hover:bg-gray-100 h-12 px-8 font-semibold transition-all duration-300 hover:scale-105"
+              className="bg-white text-[#0077B5] hover:bg-gray-100 h-12 px-8 font-semibold transition-all duration-300 hover:scale-105"
               disabled={isLoading}
             >
               {isLoading ? (
                 <>
-                  <div className="w-5 h-5 border-2 border-blue-600 border-t-transparent rounded-full animate-spin mr-2" />
+                  <div className="w-5 h-5 border-2 border-[#0077B5] border-t-transparent rounded-full animate-spin mr-2" />
                   Saving...
                 </>
               ) : (
@@ -106,7 +105,7 @@ const FinalCTA = () => {
           <div className="text-center">
             <CheckCircle className="w-16 h-16 text-green-400 mx-auto mb-4" />
             <p className="text-2xl text-white font-semibold">You're ready to transform! 🎉</p>
-            <p className="text-blue-100 mt-2">We'll be in touch soon with your brand transformation plan</p>
+            <p className="text-[#cceaff] mt-2">We'll be in touch soon with your brand transformation plan</p>
           </div>
         )}
       </div>

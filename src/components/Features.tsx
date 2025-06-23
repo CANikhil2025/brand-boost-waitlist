@@ -71,7 +71,7 @@ const Features = () => {
   return (
     <section className="container mx-auto px-4 py-20">
       <div className="text-center mb-16">
-        <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-gray-900 to-blue-800 bg-clip-text text-transparent">
+        <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-gray-900 to-[#0077B5] bg-clip-text text-transparent">
           💼 Who is this for?
         </h2>
         <p className="text-xl text-gray-600 max-w-2xl mx-auto mb-2">
@@ -89,7 +89,7 @@ const Features = () => {
             key={segment.id}
             className={`flex items-center space-x-2 px-6 py-3 rounded-full font-semibold transition-all duration-300 ${
               activeSegment === segment.id
-                ? "bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-lg"
+                ? "bg-[#0077B5] text-white shadow-lg"
                 : "bg-white text-gray-600 border border-gray-200"
             }`}
           >
@@ -101,7 +101,7 @@ const Features = () => {
 
       {/* Active Segment Benefits */}
       <div className="max-w-4xl mx-auto mb-20">
-        <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-8">
+        <div className="bg-gradient-to-r from-[#e6f3ff] to-[#cceaff] rounded-2xl p-8">
           <h3 className="text-2xl font-bold text-center mb-8 text-gray-900">
             🔹 Benefits for {activeSegmentData?.title}
           </h3>
@@ -118,9 +118,9 @@ const Features = () => {
 
       {/* Core Features Grid */}
       <div className="grid md:grid-cols-3 gap-8">
-        <Card className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 bg-gradient-to-br from-white to-blue-50">
+        <Card className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 bg-gradient-to-br from-white to-[#e6f3ff]">
           <CardHeader>
-            <div className="w-12 h-12 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-lg flex items-center justify-center mb-4">
+            <div className="w-12 h-12 bg-[#0077B5] rounded-lg flex items-center justify-center mb-4">
               <Clock className="w-6 h-6 text-white" />
             </div>
             <CardTitle className="text-xl">Strategic Timing</CardTitle>
@@ -130,9 +130,9 @@ const Features = () => {
           </CardHeader>
         </Card>
 
-        <Card className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 bg-gradient-to-br from-white to-indigo-50">
+        <Card className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 bg-gradient-to-br from-white to-[#e6f3ff]">
           <CardHeader>
-            <div className="w-12 h-12 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-lg flex items-center justify-center mb-4">
+            <div className="w-12 h-12 bg-[#0077B5] rounded-lg flex items-center justify-center mb-4">
               <TrendingUp className="w-6 h-6 text-white" />
             </div>
             <CardTitle className="text-xl">Thought Leadership</CardTitle>
@@ -142,9 +142,9 @@ const Features = () => {
           </CardHeader>
         </Card>
 
-        <Card className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 bg-gradient-to-br from-white to-purple-50">
+        <Card className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 bg-gradient-to-br from-white to-[#e6f3ff]">
           <CardHeader>
-            <div className="w-12 h-12 bg-gradient-to-r from-purple-600 to-pink-600 rounded-lg flex items-center justify-center mb-4">
+            <div className="w-12 h-12 bg-[#0077B5] rounded-lg flex items-center justify-center mb-4">
               <Target className="w-6 h-6 text-white" />
             </div>
             <CardTitle className="text-xl">Brand Authenticity</CardTitle>

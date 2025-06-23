@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -65,12 +64,12 @@ const Hero = () => {
   return (
     <section className="container mx-auto px-4 py-20 text-center">
       <div className="max-w-4xl mx-auto">
-        <Badge className="mb-6 bg-gradient-to-r from-blue-600 to-indigo-600 text-white animate-fade-in">
+        <Badge className="mb-6 bg-[#0077B5] text-white animate-fade-in">
           <Bell className="w-4 h-4 mr-2" />
           AI-Powered Personal Brand Transformation
         </Badge>
         
-        <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-gray-900 via-blue-800 to-indigo-900 bg-clip-text text-transparent animate-fade-in">
+        <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-gray-900 via-[#0077B5] to-[#004471] bg-clip-text text-transparent animate-fade-in">
           Transform Your Personal Brand on LinkedIn
         </h1>
         
@@ -91,7 +90,7 @@ const Hero = () => {
             <Button 
               type="submit" 
               size="lg" 
-              className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 h-12 px-8 transition-all duration-300 hover:scale-105"
+              className="bg-[#0077B5] hover:bg-[#004471] h-12 px-8 transition-all duration-300 hover:scale-105"
               disabled={isSubmitted || isLoading}
             >
               {isLoading ? (
