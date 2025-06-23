@@ -94,7 +94,7 @@ const FinalCTA = () => {
                 </>
               ) : (
                 <>
-                  Start Transformation
+                  Join our waitlist
                   <ArrowRight className="w-5 h-5 ml-2" />
                 </>
               )}
