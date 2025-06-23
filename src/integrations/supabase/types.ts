@@ -9,6 +9,33 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
+      intro_videos: {
+        Row: {
+          created_at: string
+          file_name: string
+          file_path: string
+          id: string
+          is_active: boolean
+          uploaded_by: string | null
+        }
+        Insert: {
+          created_at?: string
+          file_name: string
+          file_path: string
+          id?: string
+          is_active?: boolean
+          uploaded_by?: string | null
+        }
+        Update: {
+          created_at?: string
+          file_name?: string
+          file_path?: string
+          id?: string
+          is_active?: boolean
+          uploaded_by?: string | null
+        }
+        Relationships: []
+      }
       waitlist_emails: {
         Row: {
           created_at: string

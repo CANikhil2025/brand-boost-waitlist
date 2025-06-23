@@ -1,8 +1,50 @@
 
+import { useState, useEffect } from 'react';
 import { Badge } from "@/components/ui/badge";
 import { Video, Play, CheckCircle } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
+
+interface ActiveVideo {
+  id: string;
+  file_path: string;
+  file_name: string;
+}
 
 const VideoIntro = () => {
+  const [activeVideo, setActiveVideo] = useState<ActiveVideo | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetchActiveVideo();
+  }, []);
+
+  const fetchActiveVideo = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('intro_videos')
+        .select('id, file_path, file_name')
+        .eq('is_active', true)
+        .single();
+
+      if (error && error.code !== 'PGRST116') { // PGRST116 is "no rows returned"
+        throw error;
+      }
+
+      setActiveVideo(data || null);
+    } catch (error) {
+      console.error('Error fetching active video:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const getVideoUrl = (filePath: string) => {
+    const { data } = supabase.storage
+      .from('videos')
+      .getPublicUrl(filePath);
+    return data.publicUrl;
+  };
+
   return (
     <section className="container mx-auto px-4 py-20">
       <div className="max-w-4xl mx-auto text-center">
@@ -21,21 +63,39 @@ const VideoIntro = () => {
 
         <div className="relative bg-[#0077B5] rounded-2xl p-8 shadow-2xl">
           <div className="relative bg-black rounded-xl overflow-hidden aspect-video">
-            {/* Video placeholder with play button */}
-            <div className="absolute inset-0 bg-gradient-to-br from-gray-900 to-gray-800 flex items-center justify-center">
-              <div className="text-center">
-                <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center mb-4 mx-auto hover:scale-110 transition-transform duration-300 cursor-pointer">
-                  <Play className="w-8 h-8 text-gray-800 ml-1" />
+            {loading ? (
+              <div className="absolute inset-0 bg-gradient-to-br from-gray-900 to-gray-800 flex items-center justify-center">
+                <div className="text-center">
+                  <div className="w-8 h-8 border-2 border-white border-t-transparent rounded-full animate-spin mx-auto mb-4" />
+                  <p className="text-white">Loading video...</p>
                 </div>
-                <p className="text-white text-lg font-semibold mb-2">Watch Demo Video</p>
-                <p className="text-gray-300 text-sm">See how InstainKer builds your personal brand</p>
               </div>
-            </div>
+            ) : activeVideo ? (
+              <video 
+                src={getVideoUrl(activeVideo.file_path)}
+                className="w-full h-full object-cover"
+                controls
+                preload="metadata"
+                poster=""
+              >
+                Your browser does not support the video tag.
+              </video>
+            ) : (
+              <div className="absolute inset-0 bg-gradient-to-br from-gray-900 to-gray-800 flex items-center justify-center">
+                <div className="text-center">
+                  <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center mb-4 mx-auto hover:scale-110 transition-transform duration-300 cursor-pointer">
+                    <Play className="w-8 h-8 text-gray-800 ml-1" />
+                  </div>
+                  <p className="text-white text-lg font-semibold mb-2">Demo Video Coming Soon</p>
+                  <p className="text-gray-300 text-sm">See how InstainKer builds your personal brand</p>
+                </div>
+              </div>
+            )}
           </div>
           
           <div className="mt-6 text-center">
             <p className="text-white text-lg mb-4">
-              ⚡ 3-minute demo showing real LinkedIn content creation
+              ⚡ Watch InstainKer transform your LinkedIn presence
             </p>
             <div className="flex flex-wrap justify-center gap-4 text-[#cceaff] text-sm">
               <span className="flex items-center">
